@@ -28,7 +28,8 @@ type the following commands in git bash:
 
 ## STEP 4 (To run the program - assuming you do not have any IDE to run the program):
 - Open command prompt/terminal  
-- navigate inside the project folder  
+- navigate to the folder where you cloned this repository
+- run command : cd .\Fetch_take_home_test-backend\
 - run command : javac com/fetch/test/PointsHandler.java  
 - run command : java com/fetch/test/PointsHandler \<Points to be spent\>  
 
