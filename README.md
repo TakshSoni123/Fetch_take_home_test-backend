@@ -30,6 +30,6 @@ type the following commands in git bash:
 - Open command prompt/terminal  
 - navigate inside the project folder  
 - run command : javac PointsHandler.java  
-- run command : java PointsHandler <Points to be spent>  
+- run command : java PointsHandler \<Points to be spent\>  
 
 
