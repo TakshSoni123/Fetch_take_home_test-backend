@@ -1,3 +1,4 @@
+package com.fetch.test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -6,7 +7,7 @@ import java.util.Set;
 
 public class PointsHandler {
 	
-	public static final String READ_FILE = "transactions.csv";
+	public static final String READ_FILE = "resources/transactions.csv";
 	
 	public static Map<String, Long> payerMap;
 	public static long totalPoints;
@@ -19,6 +20,11 @@ public class PointsHandler {
     	
     	//Call function to read from transactions.csv
     	List<Transaction> list = CSVReader.readFileFromCSV(READ_FILE);
+    	
+    	if(list==null) {
+    		System.out.println("Please check transactions.csv file");
+    	}
+    	
     	System.out.println("\nlIST OF TRANSACTIONS READ FROM FILE:-");
     	System.out.println("Payer | Points | Timestamp");
     	for(Transaction t : list) {

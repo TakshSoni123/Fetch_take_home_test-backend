@@ -1,3 +1,4 @@
+package com.fetch.test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -36,6 +37,7 @@ public class CSVReader {
             }
         }catch (IOException ioe) {
             ioe.printStackTrace();
+            return null;
         }
         return transactions;
     }
