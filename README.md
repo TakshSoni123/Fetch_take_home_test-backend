@@ -23,13 +23,14 @@ type the following commands in git bash:
 
 
 ## STEP 3 (To setup transactions.csv file in the project):
-- Delete the existing dummy transactions.csv file from the project folder  
-- Add your test transactions.csv file  
+- Delete the existing dummy resources/transactions.csv file from the project folder  
+- Add your test transactions.csv file in the resources folder. (Please make sure the file name is the same, otherwise the code will throw exceptions)
 
-## STEP 4 (To run the program):
+## STEP 4 (To run the program - assuming you do not have any IDE to run the program):
 - Open command prompt/terminal  
-- navigate inside the project folder  
-- run command : javac PointsHandler.java  
-- run command : java PointsHandler \<Points to be spent\>  
+- navigate to the folder where you cloned this repository
+- run command : cd .\Fetch_take_home_test-backend\
+- run command : javac com/fetch/test/PointsHandler.java  
+- run command : java com/fetch/test/PointsHandler \<Points to be spent\>  
 
 
