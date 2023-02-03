@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVReader {
+	
+	//Function to read data from CSV and store in list of Transactions
 	public static List<Transaction> readFileFromCSV (String fileName){
         List<Transaction> transactions = new ArrayList <> (); 
         Path pathToFile = Paths.get(fileName);

@@ -3,6 +3,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+//Class Transaction to store individual transactions
 public class Transaction {
 	private String payer;
 	private long points;

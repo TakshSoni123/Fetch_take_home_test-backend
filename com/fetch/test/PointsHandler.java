@@ -74,12 +74,14 @@ public class PointsHandler {
     	List<Transaction> finalList = new ArrayList<>();
     	
     	for(Transaction t : list) {
+    		
+    		//If points are earned by the user, directly store them
     		if(t.getPoints() >= 0) {
     			finalList.add(t);
     			payerMap.put(t.getPayer(), payerMap.getOrDefault(t.getPayer(), 0L) + t.getPoints());
     			totalPoints += t.getPoints();
     		}
-    		else {
+    		else { //Else if the points are spent (i.e. negative points), we need to call the spend function to follow all the spending protocols
 //    			System.out.println("Spending now : "+t.getPoints());
     			finalList = spend(finalList, Math.abs(t.getPoints()));
     			if(finalList == null) {
@@ -96,29 +98,32 @@ public class PointsHandler {
     
     public static List<Transaction> spend(List<Transaction> currList, long amountToSpend){
     	
+    	//If the amount to be spent is greater than the total points with the user, we will return with an error message
     	if(Math.abs(amountToSpend) > totalPoints) {
 			System.out.println("User does not have enough points to spend : "+amountToSpend);
 			return null;
 		}
     	
+    	// Reduce points from transactions until amount to be spent is 0
     	while(amountToSpend > 0) {
     		
-			Transaction lastTransaction = currList.get(0);
+			Transaction oldestTransaction = currList.get(0);
     		
-    		if(lastTransaction.getPoints() >= amountToSpend) {
-    			long pointsLeft = lastTransaction.getPoints() - amountToSpend;
-    			lastTransaction.setPoints(pointsLeft);
-    			payerMap.put(lastTransaction.getPayer(), payerMap.get(lastTransaction.getPayer()) - amountToSpend);
+			//If we can directly subtract the remaining amount from oldest transaction points
+    		if(oldestTransaction.getPoints() >= amountToSpend) {
+    			long pointsLeft = oldestTransaction.getPoints() - amountToSpend;
+    			oldestTransaction.setPoints(pointsLeft);
+    			payerMap.put(oldestTransaction.getPayer(), payerMap.get(oldestTransaction.getPayer()) - amountToSpend);
     			amountToSpend = 0;
     		}
     		else {
-    			amountToSpend -= lastTransaction.getPoints();
+    			amountToSpend -= oldestTransaction.getPoints();
     			
-    			// Remove lastTransaction from list
+    			// Remove oldestTransaction from list as it does not matter any more
     			currList.remove(0);
     			
     			// Update points in map
-    			payerMap.put(lastTransaction.getPayer(), payerMap.get(lastTransaction.getPayer()) - lastTransaction.getPoints());
+    			payerMap.put(oldestTransaction.getPayer(), payerMap.get(oldestTransaction.getPayer()) - oldestTransaction.getPoints());
     			
     		}
     		
